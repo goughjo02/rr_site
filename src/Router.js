@@ -1,6 +1,8 @@
 import React, { Component, Fragment } from "react";
 // React Router stuff
 import { BrowserRouter, Route, Link } from "react-router-dom";
+// React Loadable stuff
+import Loadable from "react-loadable";
 // Material UI stuff
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -30,19 +32,75 @@ import SchoolIcon from "@material-ui/icons/School";
 import PeopleIcon from "@material-ui/icons/People";
 import PublicIcon from "@material-ui/icons/Public";
 // Custom Components
-import Home from "./components/Home";
-import WhatWeDo from "./components/WhatWeDo";
-import OurStory from "./components/OurStory";
-import ProjectEmpower from "./components/ProjectEmpower";
-import SchoolFund from "./components/SchoolFund";
-import Donate from "./components/Donate";
-import Contact from "./components/Contact";
-import Expertise from "./components/Expertise";
-import AmbassadorPrograms from "./components/AmbassadorPrograms";
-import Yoga from "./components/Yoga";
+// import Home from "./components/Home";
+// import WhatWeDo from "./components/WhatWeDo";
+// import OurStory from "./components/OurStory";
+// import ProjectEmpower from "./components/ProjectEmpower";
+// import SchoolFund from "./components/SchoolFund";
+// import Donate from "./components/Donate";
+// import Contact from "./components/Contact";
+// import Expertise from "./components/Expertise";
+// import AmbassadorPrograms from "./components/AmbassadorPrograms";
+// import Yoga from "./components/Yoga";
 
 // Stub Components
-const YogaTeachers = () => <h2>Yoga Teachers</h2>;
+const MyLoadingComponent = ({ isLoading, error }) => {
+  // Handle the loading state
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+  // Handle the error state
+  else if (error) {
+    return <div>Sorry, there was a problem loading the page.</div>;
+  } else {
+    return null;
+  }
+};
+
+const AsyncHome = Loadable({
+  loader: () => import("./components/Home"),
+  loading: MyLoadingComponent
+});
+const AsyncWhatWeDo = Loadable({
+  loader: () => import("./components/WhatWeDo"),
+  loading: MyLoadingComponent
+});
+const AsyncOurStory = Loadable({
+  loader: () => import("./components/OurStory"),
+  loading: MyLoadingComponent
+});
+const AsyncProjectEmpower = Loadable({
+  loader: () => import("./components/ProjectEmpower"),
+  loading: MyLoadingComponent
+});
+const AsyncSchoolFund = Loadable({
+  loader: () => import("./components/SchoolFund"),
+  loading: MyLoadingComponent
+});
+const AsyncDonate = Loadable({
+  loader: () => import("./components/Donate"),
+  loading: MyLoadingComponent
+});
+const AsyncYoga = Loadable({
+  loader: () => import("./components/Yoga"),
+  loading: MyLoadingComponent
+});
+const AsyncYogaTeachers = Loadable({
+  loader: () => import("./components/YogaTeachers"),
+  loading: MyLoadingComponent
+});
+const AsyncExpertise = Loadable({
+  loader: () => import("./components/Expertise"),
+  loading: MyLoadingComponent
+});
+const AsyncAmbassadorPrograms = Loadable({
+  loader: () => import("./components/AmbassadorPrograms"),
+  loading: MyLoadingComponent
+});
+const AsyncContact = Loadable({
+  loader: () => import("./components/Contact"),
+  loading: MyLoadingComponent
+});
 
 const styles = theme => ({
   root: {
@@ -97,17 +155,17 @@ class Router extends Component {
   renderRoutes = () => {
     return (
       <Fragment>
-        <Route path="/" exact component={Home} />
-        <Route path="/what-we-do/" component={WhatWeDo} />
-        <Route path="/our-story/" component={OurStory} />
-        <Route path="/project-empower/" component={ProjectEmpower} />
-        <Route path="/school-fund/" component={SchoolFund} />
-        <Route path="/donate/" component={Donate} />
-        <Route path="/yoga/" component={Yoga} />
-        <Route path="/yoga-teachers/" component={YogaTeachers} />
-        <Route path="/expertise/" component={Expertise} />
-        <Route path="/ambassador-programs/" component={AmbassadorPrograms} />
-        <Route path="/contact/" component={Contact} />
+        <Route path="/" exact component={AsyncHome} />
+        <Route path="/what-we-do/" component={AsyncWhatWeDo} />
+                  <Route path="/our-story/" component={AsyncOurStory} />
+                  <Route path="/project-empower/" component={AsyncProjectEmpower} />
+                  <Route path="/school-fund/" component={AsyncSchoolFund} />
+                  <Route path="/donate/" component={AsyncDonate} />
+                  <Route path="/yoga/" component={AsyncYoga} />
+                  <Route path="/yoga-teachers/" component={AsyncYogaTeachers} />
+                  <Route path="/expertise/" component={AsyncExpertise} />
+                  <Route path="/ambassador-programs/" component={AsyncAmbassadorPrograms} />
+                  <Route path="/contact/" component={AsyncContact} />
       </Fragment>
     );
   };
