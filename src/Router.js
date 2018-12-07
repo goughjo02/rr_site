@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from "react";
 // React Router stuff
-import { BrowserRouter, Route, Link } from "react-router-dom";
+import { BrowserRouter, Route, Redirect, Link } from "react-router-dom";
 // React Loadable stuff
 import Loadable from "react-loadable";
 // Material UI stuff
@@ -155,17 +155,21 @@ class Router extends Component {
   renderRoutes = () => {
     return (
       <Fragment>
+        <Route exact path="/rr_site" render={() => <Redirect to="/" />} />
         <Route path="/" exact component={AsyncHome} />
         <Route path="/what-we-do/" component={AsyncWhatWeDo} />
-                  <Route path="/our-story/" component={AsyncOurStory} />
-                  <Route path="/project-empower/" component={AsyncProjectEmpower} />
-                  <Route path="/school-fund/" component={AsyncSchoolFund} />
-                  <Route path="/donate/" component={AsyncDonate} />
-                  <Route path="/yoga/" component={AsyncYoga} />
-                  <Route path="/yoga-teachers/" component={AsyncYogaTeachers} />
-                  <Route path="/expertise/" component={AsyncExpertise} />
-                  <Route path="/ambassador-programs/" component={AsyncAmbassadorPrograms} />
-                  <Route path="/contact/" component={AsyncContact} />
+        <Route path="/our-story/" component={AsyncOurStory} />
+        <Route path="/project-empower/" component={AsyncProjectEmpower} />
+        <Route path="/school-fund/" component={AsyncSchoolFund} />
+        <Route path="/donate/" component={AsyncDonate} />
+        <Route path="/yoga/" component={AsyncYoga} />
+        <Route path="/yoga-teachers/" component={AsyncYogaTeachers} />
+        <Route path="/expertise/" component={AsyncExpertise} />
+        <Route
+          path="/ambassador-programs/"
+          component={AsyncAmbassadorPrograms}
+        />
+        <Route path="/contact/" component={AsyncContact} />
       </Fragment>
     );
   };
