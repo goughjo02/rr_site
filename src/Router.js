@@ -3,6 +3,10 @@ import React, { Component, Fragment } from "react";
 import { BrowserRouter, Route, Redirect, Link } from "react-router-dom";
 // React Loadable stuff
 import Loadable from "react-loadable";
+// Images
+import Logo from "./assets/logo.png";
+// React Headroom
+import Headroom from "react-headroom";
 // Material UI stuff
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -109,11 +113,16 @@ const styles = theme => ({
   toolbar: {
     justifyContent: "flex-end"
   },
-  brand: {
-    marginRight: "auto"
-  },
   z9999: {
     zIndex: 9999
+  },
+  logoHolder: {
+    maxHeight: "80px",
+    marginRight: "auto"
+  },
+  headLogo: {
+    height: "80px",
+    width: "auto"
   }
 });
 
@@ -474,20 +483,18 @@ class Router extends Component {
     return (
       <BrowserRouter>
         <div className={classes.root}>
-          <AppBar position="static">
-            <Toolbar color="primary" className={classes.toolbar}>
-              <Typography
-                className={classes.brand}
-                color="textPrimary"
-                variant="h5"
-              >
-                Rise Rwanda
-              </Typography>
-              {isWidthUp("md", this.props.width)
-                ? this.renderLargeScreenNav()
-                : this.renderSmallScreenNav()}
-            </Toolbar>
-          </AppBar>
+          <Headroom>
+            <AppBar position="relative">
+              <Toolbar color="primary" className={classes.toolbar}>
+                <div className={classes.logoHolder}>
+                  <img src={Logo} className={classes.headLogo} alt="logo" />
+                </div>
+                {isWidthUp("md", this.props.width)
+                  ? this.renderLargeScreenNav()
+                  : this.renderSmallScreenNav()}
+              </Toolbar>
+            </AppBar>
+          </Headroom>
           {this.renderRoutes()}
         </div>
       </BrowserRouter>
