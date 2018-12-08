@@ -1,0 +1,2 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[8],{344:function(n,e,a){"use strict";a.r(e);var t=a(0),c=a.n(t);e.default=function(){return c.a.createElement("h2",null,"Yoga Teachers")}}}]);
+//# sourceMappingURL=8.bbbf03c4.chunk.js.map
