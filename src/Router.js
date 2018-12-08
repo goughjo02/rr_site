@@ -117,11 +117,10 @@ const styles = theme => ({
     zIndex: 9999
   },
   logoHolder: {
-    maxHeight: "80px",
     marginRight: "auto"
   },
   headLogo: {
-    height: "80px",
+    height: "60px",
     width: "auto"
   }
 });
