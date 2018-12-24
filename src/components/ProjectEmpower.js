@@ -117,7 +117,7 @@ const ProjectEmpower = props => {
 						returns.
 					</li>
 					<li>Encourage an environmentally conscious workforce.</li>
-					<li>…do it with joy 🙂</li>
+					<li>…do it with joy <span role="img" aria-label="smiley_face">🙂</span></li>
 				</ul>
 			</div>
 			<h3>

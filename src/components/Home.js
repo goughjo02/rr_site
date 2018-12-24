@@ -3,7 +3,6 @@ import React from "react";
 import { withStyles } from "@material-ui/core/styles";
 import withWidth, { isWidthUp } from "@material-ui/core/withWidth";
 import Typography from "@material-ui/core/Typography";
-import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 // Images
 import Countryside from "../assets/countryside.jpg";

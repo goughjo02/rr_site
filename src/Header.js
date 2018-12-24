@@ -1,8 +1,6 @@
 import React, { Component, Fragment } from "react";
 // React Router stuff
-import { BrowserRouter, Route, Redirect, Link } from "react-router-dom";
-// React Loadable stuff
-import Loadable from "react-loadable";
+import { Link } from "react-router-dom";
 // Images
 import Logo from "./assets/logo.png";
 // React Headroom
@@ -34,16 +32,8 @@ import MailIcon from "@material-ui/icons/Mail";
 import SchoolIcon from "@material-ui/icons/School";
 import PeopleIcon from "@material-ui/icons/People";
 import PublicIcon from "@material-ui/icons/Public";
-// Routes
-import { Routes } from "./Routes";
-import LoadingComponent from "./LoadingComponent";
 
 const styles = theme => ({
-  root: {
-    flex: 1,
-    display: "flex",
-    flexDirection: "column"
-  },
   toolbar: {
     justifyContent: "flex-end"
   },
@@ -59,7 +49,7 @@ const styles = theme => ({
   }
 });
 
-class Router extends Component {
+class Header extends Component {
   state = {
     aboutOpen: false,
     getInvolvedOpen: false,
@@ -92,28 +82,6 @@ class Router extends Component {
     this.setState({
       drawerOpen: open
     });
-  };
-
-  renderRoutes = () => {
-    console.log(Routes);
-    return (
-      <Fragment>
-        <Route exact path="/rr_site" render={() => <Redirect to="/" />} />
-        {Object.values(Routes).map(e => {
-          return (
-            <Route
-              key={e.route}
-              path={e.route}
-              exact
-              component={Loadable({
-                loader: () => import(`${e.path}`),
-                loading: LoadingComponent
-              })}
-            />
-          );
-        })}
-      </Fragment>
-    );
   };
 
   renderSmallScreenNav = () => {
@@ -414,25 +382,20 @@ class Router extends Component {
   render() {
     const { classes } = this.props;
     return (
-      <BrowserRouter>
-        <div className={classes.root}>
-          <Headroom>
-            <AppBar position="relative">
-              <Toolbar color="primary" className={classes.toolbar}>
-                <div className={classes.logoHolder}>
-                  <img src={Logo} className={classes.headLogo} alt="logo" />
-                </div>
-                {isWidthUp("md", this.props.width)
-                  ? this.renderLargeScreenNav()
-                  : this.renderSmallScreenNav()}
-              </Toolbar>
-            </AppBar>
-          </Headroom>
-          {this.renderRoutes()}
-        </div>
-      </BrowserRouter>
+      <Headroom>
+        <AppBar position="relative">
+          <Toolbar color="primary" className={classes.toolbar}>
+            <div className={classes.logoHolder}>
+              <img src={Logo} className={classes.headLogo} alt="logo" />
+            </div>
+            {isWidthUp("md", this.props.width)
+              ? this.renderLargeScreenNav()
+              : this.renderSmallScreenNav()}
+          </Toolbar>
+        </AppBar>
+      </Headroom>
     );
   }
 }
 
-export default withWidth()(withStyles(styles, { withTheme: true })(Router));
+export default withWidth()(withStyles(styles, { withTheme: true })(Header));

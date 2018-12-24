@@ -5,7 +5,7 @@ import {
   VerticalTimeline,
   VerticalTimelineElement
 } from "react-vertical-timeline-component";
-import "./fixedTimelineCss.css";
+import 'react-vertical-timeline-component/style.min.css';
 
 import OurStoryEvents from "../assets/info/our_story";
 
@@ -16,6 +16,7 @@ const OurStory = props => {
         {OurStoryEvents.map(e => {
           return (
             <VerticalTimelineElement
+              key={e.text}
               date={e.date}
               iconStyle={{
                 background: "rgb(33, 150, 243)",

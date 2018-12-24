@@ -5,7 +5,7 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 
 const styles = theme => ({
   root: {
-    flex: 1,
+    height: "55vh",
     width: "100%",
     display: "flex",
     justifyContent: "center",
@@ -18,7 +18,6 @@ const Loading = props => {
   const { classes, isLoading, error } = props;
   // Handle the loading state
   if (isLoading) {
-    console.log(isLoading);
     return (
       <div className={classes.root}>
         <CircularProgress color="primary" />
