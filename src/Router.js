@@ -24,7 +24,6 @@ import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-import CircularProgress from "@material-ui/core/CircularProgress";
 import { withStyles } from "@material-ui/core/styles";
 import withWidth, { isWidthUp } from "@material-ui/core/withWidth";
 // Material Icons
@@ -37,35 +36,7 @@ import PeopleIcon from "@material-ui/icons/People";
 import PublicIcon from "@material-ui/icons/Public";
 // Routes
 import { Routes } from "./Routes";
-
-// Stub Components
-const MyLoadingComponent = ({ isLoading, error }) => {
-  const style = {
-    flex: 1,
-    width: "100%",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center"
-  };
-  // Handle the loading state
-  if (isLoading) {
-    console.log(isLoading);
-    return (
-      <div style={style}>
-        <CircularProgress color="primary" />
-      </div>
-    );
-  }
-  // Handle the error state
-  else if (error) {
-    console.log(error);
-    return (
-      <div style={style}>Sorry, there was a problem loading the page.</div>
-    );
-  } else {
-    return null;
-  }
-};
+import LoadingComponent from "./LoadingComponent";
 
 const styles = theme => ({
   root: {
@@ -136,7 +107,7 @@ class Router extends Component {
               exact
               component={Loadable({
                 loader: () => import(`${e.path}`),
-                loading: MyLoadingComponent
+                loading: LoadingComponent
               })}
             />
           );
