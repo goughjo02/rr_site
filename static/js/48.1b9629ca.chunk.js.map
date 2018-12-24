@@ -1,0 +1,1 @@
+{"version":3,"sources":["assets/school_fund/yellow_road.jpg"],"names":["module","exports","__webpack_require__","p"],"mappings":"8EAAAA,EAAAC,QAAiBC,EAAAC,EAAuB","file":"static/js/48.1b9629ca.chunk.js","sourcesContent":["module.exports = __webpack_public_path__ + \"static/media/yellow_road.742a02b0.jpg\";"],"sourceRoot":""}
