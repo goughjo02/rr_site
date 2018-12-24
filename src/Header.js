@@ -27,11 +27,10 @@ import withWidth, { isWidthUp } from "@material-ui/core/withWidth";
 // Material Icons
 import ArrowDropDown from "@material-ui/icons/ArrowDropDown";
 import MenuIcon from "@material-ui/icons/Menu";
-import HomeIcon from "@material-ui/icons/Home";
-import MailIcon from "@material-ui/icons/Mail";
-import SchoolIcon from "@material-ui/icons/School";
-import PeopleIcon from "@material-ui/icons/People";
-import PublicIcon from "@material-ui/icons/Public";
+// Routes
+import { RoutingInformation } from "./Routes";
+// Lodash stuff
+import uniqueId from "lodash/uniqueId";
 
 const styles = theme => ({
   toolbar: {
@@ -99,133 +98,55 @@ class Header extends Component {
         >
           <div className={classes.list}>
             <List>
-              <Link to="/" style={{ textDecoration: "none" }}>
-                <ListItem
-                  button
-                  onClick={this.toggleDrawer(false)}
-                  onKeyDown={this.toggleDrawer(false)}
-                >
-                  <ListItemIcon>
-                    <HomeIcon />
-                  </ListItemIcon>
-                  <ListItemText primary={"Home"} />
-                </ListItem>
-              </Link>
-              <Divider />
-              <Link to="/what-we-do/" style={{ textDecoration: "none" }}>
-                <ListItem
-                  button
-                  onClick={this.toggleDrawer(false)}
-                  onKeyDown={this.toggleDrawer(false)}
-                >
-                  <ListItemIcon>
-                    <MailIcon />
-                  </ListItemIcon>
-                  <ListItemText primary={"What We Do"} />
-                </ListItem>
-              </Link>
-              <Link to="/our-story/" style={{ textDecoration: "none" }}>
-                <ListItem
-                  button
-                  onClick={this.toggleDrawer(false)}
-                  onKeyDown={this.toggleDrawer(false)}
-                >
-                  <ListItemIcon>
-                    <PublicIcon />
-                  </ListItemIcon>
-                  <ListItemText primary={"Our Story"} />
-                </ListItem>
-              </Link>
-              <Link to="/project-empower/" style={{ textDecoration: "none" }}>
-                <ListItem
-                  button
-                  onClick={this.toggleDrawer(false)}
-                  onKeyDown={this.toggleDrawer(false)}
-                >
-                  <ListItemIcon>
-                    <PeopleIcon />
-                  </ListItemIcon>
-                  <ListItemText primary={"Project Empower"} />
-                </ListItem>
-              </Link>
-              <Link to="/school-fund/" style={{ textDecoration: "none" }}>
-                <ListItem
-                  button
-                  onClick={this.toggleDrawer(false)}
-                  onKeyDown={this.toggleDrawer(false)}
-                >
-                  <ListItemIcon>
-                    <SchoolIcon />
-                  </ListItemIcon>
-                  <ListItemText primary={"School Fund"} />
-                </ListItem>
-              </Link>
-              <Divider />
-              <Link to="/yoga/" style={{ textDecoration: "none" }}>
-                <ListItem
-                  button
-                  onClick={this.toggleDrawer(false)}
-                  onKeyDown={this.toggleDrawer(false)}
-                >
-                  <ListItemIcon>
-                    <MailIcon />
-                  </ListItemIcon>
-                  <ListItemText primary={"Yoga"} />
-                </ListItem>
-              </Link>
-              <Link to="/expertise/" style={{ textDecoration: "none" }}>
-                <ListItem
-                  button
-                  onClick={this.toggleDrawer(false)}
-                  onKeyDown={this.toggleDrawer(false)}
-                >
-                  <ListItemIcon>
-                    <MailIcon />
-                  </ListItemIcon>
-                  <ListItemText primary={"Expertise"} />
-                </ListItem>
-              </Link>
-              <Link
-                to="/ambassador-programs/"
-                style={{ textDecoration: "none" }}
-              >
-                <ListItem
-                  button
-                  onClick={this.toggleDrawer(false)}
-                  onKeyDown={this.toggleDrawer(false)}
-                >
-                  <ListItemIcon>
-                    <MailIcon />
-                  </ListItemIcon>
-                  <ListItemText primary={"Ambassador Programs"} />
-                </ListItem>
-              </Link>
-              <Divider />
-              <Link to="/contact/" style={{ textDecoration: "none" }}>
-                <ListItem
-                  button
-                  onClick={this.toggleDrawer(false)}
-                  onKeyDown={this.toggleDrawer(false)}
-                >
-                  <ListItemIcon>
-                    <MailIcon />
-                  </ListItemIcon>
-                  <ListItemText primary={"Contact"} />
-                </ListItem>
-              </Link>
-              <Divider />
-              <Link to="/donate/" style={{ textDecoration: "none" }}>
-                <ListItem
-                  button
-                  onClick={this.toggleDrawer(false)}
-                  onKeyDown={this.toggleDrawer(false)}
-                >
-                  <ListItemIcon>
-                    <MailIcon />
-                  </ListItemIcon>
-                  <ListItemText primary={"Donate"} />
-                </ListItem>
-              </Link>
+              {Object.values(RoutingInformation).map(e => {
+                if (e.hidden) {
+                  return null;
+                } else if (!e.path) {
+                  return (
+                    <Fragment
+                      key={uniqueId()}>
+                      {Object.values(e).map(f => {
+                        return (
+                          <Link
+                            key={uniqueId()}
+                            to={`${f.route}`}
+                            style={{ textDecoration: "none" }}
+                          >
+                            <ListItem
+                              button
+                              onClick={this.toggleDrawer(false)}
+                              onKeyDown={this.toggleDrawer(false)}
+                            >
+                              <ListItemIcon>{f.icon}</ListItemIcon>
+                              <ListItemText primary={`${f.title}`} />
+                            </ListItem>
+                          </Link>
+                        );
+                      })}
+                      <Divider />
+                    </Fragment>
+                  );
+                } else {
+                  return (
+                    <Fragment key={uniqueId()}>
+                      <Link
+                        to={`${e.route}`}
+                        style={{ textDecoration: "none" }}
+                      >
+                        <ListItem
+                          button
+                          onClick={this.toggleDrawer(false)}
+                          onKeyDown={this.toggleDrawer(false)}
+                        >
+                          <ListItemIcon>{e.icon}</ListItemIcon>
+                          <ListItemText primary={`${e.title}`} />
+                        </ListItem>
+                      </Link>
+                      <Divider />
+                    </Fragment>
+                  );
+                }
+              })}
             </List>
           </div>
         </SwipeableDrawer>
@@ -381,6 +302,7 @@ class Header extends Component {
 
   render() {
     const { classes } = this.props;
+    const largeScreen = isWidthUp("md", this.props.width);
     return (
       <Headroom>
         <AppBar position="relative">
@@ -388,7 +310,7 @@ class Header extends Component {
             <div className={classes.logoHolder}>
               <img src={Logo} className={classes.headLogo} alt="logo" />
             </div>
-            {isWidthUp("md", this.props.width)
+            {largeScreen
               ? this.renderLargeScreenNav()
               : this.renderSmallScreenNav()}
           </Toolbar>

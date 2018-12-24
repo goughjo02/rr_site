@@ -1,0 +1,1 @@
+{"version":3,"sources":["assets/what_we_do.png"],"names":["module","exports","__webpack_require__","p"],"mappings":"8EAAAA,EAAAC,QAAiBC,EAAAC,EAAuB","file":"static/js/51.999247d5.chunk.js","sourcesContent":["module.exports = __webpack_public_path__ + \"static/media/what_we_do.c44c2f5e.png\";"],"sourceRoot":""}
