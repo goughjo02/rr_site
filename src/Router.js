@@ -11,7 +11,7 @@ import Headroom from "react-headroom";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
-import Typography from "@material-ui/core/Typography";
+// import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import ClickAwayListener from "@material-ui/core/ClickAwayListener";
 import Grow from "@material-ui/core/Grow";
@@ -24,91 +24,54 @@ import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
+import CircularProgress from "@material-ui/core/CircularProgress";
 import { withStyles } from "@material-ui/core/styles";
 import withWidth, { isWidthUp } from "@material-ui/core/withWidth";
 // Material Icons
 import ArrowDropDown from "@material-ui/icons/ArrowDropDown";
 import MenuIcon from "@material-ui/icons/Menu";
 import HomeIcon from "@material-ui/icons/Home";
-import InboxIcon from "@material-ui/icons/MoveToInbox";
 import MailIcon from "@material-ui/icons/Mail";
 import SchoolIcon from "@material-ui/icons/School";
 import PeopleIcon from "@material-ui/icons/People";
 import PublicIcon from "@material-ui/icons/Public";
-// Custom Components
-// import Home from "./components/Home";
-// import WhatWeDo from "./components/WhatWeDo";
-// import OurStory from "./components/OurStory";
-// import ProjectEmpower from "./components/ProjectEmpower";
-// import SchoolFund from "./components/SchoolFund";
-// import Donate from "./components/Donate";
-// import Contact from "./components/Contact";
-// import Expertise from "./components/Expertise";
-// import AmbassadorPrograms from "./components/AmbassadorPrograms";
-// import Yoga from "./components/Yoga";
+// Routes
+import { Routes } from "./Routes";
 
 // Stub Components
 const MyLoadingComponent = ({ isLoading, error }) => {
+  const style = {
+    flex: 1,
+    width: "100%",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center"
+  };
   // Handle the loading state
   if (isLoading) {
-    return <div>Loading...</div>;
+    console.log(isLoading);
+    return (
+      <div style={style}>
+        <CircularProgress color="primary" />
+      </div>
+    );
   }
   // Handle the error state
   else if (error) {
-    return <div>Sorry, there was a problem loading the page.</div>;
+    console.log(error);
+    return (
+      <div style={style}>Sorry, there was a problem loading the page.</div>
+    );
   } else {
     return null;
   }
 };
 
-const AsyncHome = Loadable({
-  loader: () => import("./components/Home"),
-  loading: MyLoadingComponent
-});
-const AsyncWhatWeDo = Loadable({
-  loader: () => import("./components/WhatWeDo"),
-  loading: MyLoadingComponent
-});
-const AsyncOurStory = Loadable({
-  loader: () => import("./components/OurStory"),
-  loading: MyLoadingComponent
-});
-const AsyncProjectEmpower = Loadable({
-  loader: () => import("./components/ProjectEmpower"),
-  loading: MyLoadingComponent
-});
-const AsyncSchoolFund = Loadable({
-  loader: () => import("./components/SchoolFund"),
-  loading: MyLoadingComponent
-});
-const AsyncDonate = Loadable({
-  loader: () => import("./components/Donate"),
-  loading: MyLoadingComponent
-});
-const AsyncYoga = Loadable({
-  loader: () => import("./components/Yoga"),
-  loading: MyLoadingComponent
-});
-const AsyncYogaTeachers = Loadable({
-  loader: () => import("./components/YogaTeachers"),
-  loading: MyLoadingComponent
-});
-const AsyncExpertise = Loadable({
-  loader: () => import("./components/Expertise"),
-  loading: MyLoadingComponent
-});
-const AsyncAmbassadorPrograms = Loadable({
-  loader: () => import("./components/AmbassadorPrograms"),
-  loading: MyLoadingComponent
-});
-const AsyncContact = Loadable({
-  loader: () => import("./components/Contact"),
-  loading: MyLoadingComponent
-});
-
 const styles = theme => ({
   root: {
-    minHeight: "100vh"
+    flex: 1,
+    display: "flex",
+    flexDirection: "column"
   },
   toolbar: {
     justifyContent: "flex-end"
@@ -161,23 +124,23 @@ class Router extends Component {
   };
 
   renderRoutes = () => {
+    console.log(Routes);
     return (
       <Fragment>
         <Route exact path="/rr_site" render={() => <Redirect to="/" />} />
-        <Route path="/" exact component={AsyncHome} />
-        <Route path="/what-we-do/" component={AsyncWhatWeDo} />
-        <Route path="/our-story/" component={AsyncOurStory} />
-        <Route path="/project-empower/" component={AsyncProjectEmpower} />
-        <Route path="/school-fund/" component={AsyncSchoolFund} />
-        <Route path="/donate/" component={AsyncDonate} />
-        <Route path="/yoga/" component={AsyncYoga} />
-        <Route path="/yoga-teachers/" component={AsyncYogaTeachers} />
-        <Route path="/expertise/" component={AsyncExpertise} />
-        <Route
-          path="/ambassador-programs/"
-          component={AsyncAmbassadorPrograms}
-        />
-        <Route path="/contact/" component={AsyncContact} />
+        {Object.values(Routes).map(e => {
+          return (
+            <Route
+              key={e.route}
+              path={e.route}
+              exact
+              component={Loadable({
+                loader: () => import(`${e.path}`),
+                loading: MyLoadingComponent
+              })}
+            />
+          );
+        })}
       </Fragment>
     );
   };

@@ -4792,11 +4792,6 @@ inquirer@6.2.0, inquirer@^6.1.0:
     strip-ansi "^4.0.0"
     through "^2.3.6"
 
-instafeed.js@1.4.1:
-  version "1.4.1"
-  resolved "https://registry.yarnpkg.com/instafeed.js/-/instafeed.js-1.4.1.tgz#c29d7914563c11722b36cd921a91de2521f9cdaa"
-  integrity sha1-wp15FFY8EXIrNs2SGpHeJSH5zao=
-
 internal-ip@^3.0.1:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/internal-ip/-/internal-ip-3.0.1.tgz#df5c99876e1d2eb2ea2d74f520e3f669a00ece27"
@@ -7997,15 +7992,6 @@ query-string@^4.1.0:
     object-assign "^4.1.0"
     strict-uri-encode "^1.0.0"
 
-query-string@^5.1.0:
-  version "5.1.1"
-  resolved "https://registry.yarnpkg.com/query-string/-/query-string-5.1.1.tgz#a78c012b71c17e05f2e3fa2319dd330682efb3cb"
-  integrity sha512-gjWOsm2SoGlgLEdAGt7a6slVOk9mGiXmPFMqrEhLQ68rhQuBnpfs3+EmlvqKyxnCo9/PPlF+9MtY02S1aFg+Jw==
-  dependencies:
-    decode-uri-component "^0.2.0"
-    object-assign "^4.1.0"
-    strict-uri-encode "^1.0.0"
-
 querystring-es3@^0.2.0:
   version "0.2.1"
   resolved "https://registry.yarnpkg.com/querystring-es3/-/querystring-es3-0.2.1.tgz#9ec61f79049875707d69414596fd907a4d711e73"
@@ -8157,21 +8143,6 @@ react-headroom@^2.2.4:
     prop-types "^15.5.8"
     raf "^3.3.0"
     shallowequal "^0.2.2"
-
-react-instafeed@^0.4.0:
-  version "0.4.0"
-  resolved "https://registry.yarnpkg.com/react-instafeed/-/react-instafeed-0.4.0.tgz#09520f40932200081cbed7790972f4f377645bec"
-  integrity sha512-zKr1w7YsLhv0z5EgzO34b5OKoKvjMxjyDDV9eDjwIzuswvf+aMuaUhGq/LD+IsJtSD7kXeDf1Cg+e4JpC8CwcA==
-  dependencies:
-    instafeed.js "1.4.1"
-    prop-types "^15.6.0"
-
-react-instagram-embed@^1.4.1:
-  version "1.4.1"
-  resolved "https://registry.yarnpkg.com/react-instagram-embed/-/react-instagram-embed-1.4.1.tgz#57032ff965cf8806549c2f1d3bb713635b48e407"
-  integrity sha512-uEq2cAUGjN70R3g+thHE7j/DW0CoxWrfLqxINZMkSStATe6h8fLgqcy+Tv/N2xOpNlayCTSNugozOpp9osUwkQ==
-  dependencies:
-    query-string "^5.1.0"
 
 react-is@^16.3.2:
   version "16.6.3"
