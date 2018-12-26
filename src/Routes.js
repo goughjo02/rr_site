@@ -16,81 +16,87 @@ const Home = {
   title: "Home",
   icon: <HomeIcon />,
   route: "/",
-  path: "./components/Home"
+  path: "./modules/Home"
 };
 const WhatWeDo = {
   title: "What We Do",
   icon: <HomeIcon />,
   route: "/what-we-do/",
-  path: "./components/WhatWeDo"
+  path: "./modules/WhatWeDo"
 };
 const OurStory = {
   title: "Our Story",
   icon: <PublicIcon />,
   route: "/our-story/",
-  path: "./components/OurStory"
+  path: "./modules/OurStory"
 };
 const ProjectEmpower = {
   title: "Project Empower",
   icon: <PeopleIcon />,
   route: "/project-empower/",
-  path: "./components/ProjectEmpower"
+  path: "./modules/ProjectEmpower"
 };
 const SchoolFund = {
   title: "School Fund",
   icon: <SchoolIcon />,
   route: "/school-fund/",
-  path: "./components/SchoolFund"
+  path: "./modules/SchoolFund"
 };
 const Donate = {
   title: "Donate",
   icon: <HomeIcon />,
   route: "/donate/",
-  path: "./components/Donate"
+  path: "./modules/Donate"
 };
 const Yoga = {
   title: "Yoga",
   icon: <HomeIcon />,
   route: "/yoga/",
-  path: "./components/Yoga",
-  hidden: true
+  path: "./modules/Yoga"
 };
 const YogaTeachers = {
   title: "Yoga Teachers",
   icon: <HomeIcon />,
   route: "/yoga-teachers/",
-  path: "./components/YogaTeachers"
+  path: "./modules/YogaTeachers",
+  hidden: true
 };
 const Expertise = {
   title: "Expertise",
   icon: <HomeIcon />,
   route: "/expertise/",
-  path: "./components/Expertise"
+  path: "./modules/Expertise"
 };
 const AmbassadorPrograms = {
   title: "Ambassador Programs",
   icon: <HomeIcon />,
   route: "/ambassador-programs/",
-  path: "./components/AmbassadorPrograms"
+  path: "./modules/AmbassadorPrograms"
 };
 const Contact = {
-  title: "Contect",
+  title: "Contact",
   icon: <MailIcon />,
   route: "/contact/",
-  path: "./components/Contact"
+  path: "./modules/Contact"
 };
 const RoutingInformation = {
   Home,
   About: {
-    WhatWeDo,
-    OurStory,
-    ProjectEmpower,
-    SchoolFund
+    title: "About",
+    children: {
+      WhatWeDo,
+      OurStory,
+      ProjectEmpower,
+      SchoolFund
+    }
   },
-  GetInvolved: {
-    Yoga,
-    Expertise,
-    AmbassadorPrograms
+  Get_Involved: {
+    title: "Get Involved",
+    children: {
+      Yoga,
+      Expertise,
+      AmbassadorPrograms
+    }
   },
   YogaTeachers,
   Contact,
@@ -104,7 +110,7 @@ const Routes = () => {
       <Route exact path="/rr_site" render={() => <Redirect to="/" />} />
       {Object.values(RoutingInformation).map(e => {
         if (!e.route) {
-          return Object.values(e).map(f => {
+          return Object.values(e.children).map(f => {
             return (
               <Route
                 key={f.route}

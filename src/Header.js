@@ -11,12 +11,6 @@ import Toolbar from "@material-ui/core/Toolbar";
 import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
 // import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
-import ClickAwayListener from "@material-ui/core/ClickAwayListener";
-import Grow from "@material-ui/core/Grow";
-import Paper from "@material-ui/core/Paper";
-import Popper from "@material-ui/core/Popper";
-import MenuItem from "@material-ui/core/MenuItem";
-import MenuList from "@material-ui/core/MenuList";
 import Divider from "@material-ui/core/Divider";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
@@ -25,8 +19,9 @@ import ListItemText from "@material-ui/core/ListItemText";
 import { withStyles } from "@material-ui/core/styles";
 import withWidth, { isWidthUp } from "@material-ui/core/withWidth";
 // Material Icons
-import ArrowDropDown from "@material-ui/icons/ArrowDropDown";
 import MenuIcon from "@material-ui/icons/Menu";
+// Custom Component(
+import DropDownMenu from "./components/drop-down-menu";
 // Routes
 import { RoutingInformation } from "./Routes";
 // Lodash stuff
@@ -50,31 +45,7 @@ const styles = theme => ({
 
 class Header extends Component {
   state = {
-    aboutOpen: false,
-    getInvolvedOpen: false,
     drawerOpen: false
-  };
-
-  handleAboutToggle = () => {
-    this.setState(state => ({ aboutOpen: !state.aboutOpen }));
-  };
-
-  handleGetInvolvedToggle = () => {
-    this.setState(state => ({ getInvolvedOpen: !state.getInvolvedOpen }));
-  };
-
-  handleAboutClose = event => {
-    if (this.anchorEl.contains(event.target)) {
-      return;
-    }
-    this.setState({ aboutOpen: false });
-  };
-
-  handleGetInvolvedClose = event => {
-    if (this.anchorEl2.contains(event.target)) {
-      return;
-    }
-    this.setState({ getInvolvedOpen: false });
   };
 
   toggleDrawer = open => () => {
@@ -103,9 +74,8 @@ class Header extends Component {
                   return null;
                 } else if (!e.path) {
                   return (
-                    <Fragment
-                      key={uniqueId()}>
-                      {Object.values(e).map(f => {
+                    <Fragment key={uniqueId()}>
+                      {Object.values(e.children).map(f => {
                         return (
                           <Link
                             key={uniqueId()}
@@ -155,147 +125,33 @@ class Header extends Component {
   };
 
   renderLargeScreenNav = () => {
-    const { aboutOpen, getInvolvedOpen } = this.state;
-    const { classes } = this.props;
     return (
       <Fragment>
-        <Link to="/" style={{ textDecoration: "none" }}>
-          <Button>Home</Button>
-        </Link>
-        <div>
-          <Button
-            buttonRef={node => {
-              this.anchorEl = node;
-            }}
-            aria-owns={aboutOpen ? "menu-list-grow" : undefined}
-            aria-haspopup="true"
-            onClick={this.handleAboutToggle}
-          >
-            About
-            <ArrowDropDown />
-          </Button>
-          <Popper
-            open={aboutOpen}
-            anchorEl={this.anchorEl}
-            transition
-            disablePortal
-            className={classes.z9999}
-          >
-            {({ TransitionProps, placement }) => (
-              <Grow
-                {...TransitionProps}
-                id="menu-list-grow"
-                style={{
-                  transformOrigin:
-                    placement === "bottom" ? "center top" : "center bottom"
-                }}
-              >
-                <Paper>
-                  <ClickAwayListener onClickAway={this.handleAboutClose}>
-                    <MenuList>
-                      <Link
-                        to="/what-we-do/"
-                        style={{ textDecoration: "none" }}
-                      >
-                        <MenuItem onClick={this.handleAboutClose}>
-                          What We Do
-                        </MenuItem>
-                      </Link>
-                      <Link to="/our-story/" style={{ textDecoration: "none" }}>
-                        <MenuItem onClick={this.handleAboutClose}>
-                          Our Story
-                        </MenuItem>
-                      </Link>
-                      <Link
-                        to="/project-empower/"
-                        style={{ textDecoration: "none" }}
-                      >
-                        <MenuItem onClick={this.handleAboutClose}>
-                          Project Empower
-                        </MenuItem>
-                      </Link>
-                      <Link
-                        to="/school-fund/"
-                        style={{ textDecoration: "none" }}
-                      >
-                        <MenuItem onClick={this.handleAboutClose}>
-                          School Fund
-                        </MenuItem>
-                      </Link>
-                    </MenuList>
-                  </ClickAwayListener>
-                </Paper>
-              </Grow>
-            )}
-          </Popper>
-        </div>
-        <div>
-          <Button
-            buttonRef={node => {
-              this.anchorEl2 = node;
-            }}
-            aria-owns={getInvolvedOpen ? "menu-list-grow" : undefined}
-            aria-haspopup="true"
-            onClick={this.handleGetInvolvedToggle}
-          >
-            Get Involved
-            <ArrowDropDown />
-          </Button>
-          <Popper
-            className={classes.z9999}
-            open={getInvolvedOpen}
-            anchorEl={this.anchorEl2}
-            transition
-            disablePortal
-          >
-            {({ TransitionProps, placement }) => (
-              <Grow
-                {...TransitionProps}
-                id="menu-list-grow"
-                style={{
-                  transformOrigin:
-                    placement === "bottom" ? "center top" : "center bottom"
-                }}
-              >
-                <Paper>
-                  <ClickAwayListener onClickAway={this.handleGetInvolvedClose}>
-                    <MenuList>
-                      <Link to="/donate/" style={{ textDecoration: "none" }}>
-                        <MenuItem onClick={this.handleGetInvolvedClose}>
-                          Donate
-                        </MenuItem>
-                      </Link>
-                      <Link to="/yoga/" style={{ textDecoration: "none" }}>
-                        <MenuItem onClick={this.handleGetInvolvedClose}>
-                          Yoga
-                        </MenuItem>
-                      </Link>
-                      <Link to="/expertise/" style={{ textDecoration: "none" }}>
-                        <MenuItem onClick={this.handleGetInvolvedClose}>
-                          Expertise
-                        </MenuItem>
-                      </Link>
-                      <Link
-                        to="/ambassador-programs/"
-                        style={{ textDecoration: "none" }}
-                      >
-                        <MenuItem onClick={this.handleGetInvolvedClose}>
-                          Ambassador Programs
-                        </MenuItem>
-                      </Link>
-                    </MenuList>
-                  </ClickAwayListener>
-                </Paper>
-              </Grow>
-            )}
-          </Popper>
-        </div>
-        <Link to="/donate/" style={{ textDecoration: "none" }}>
-          <Button>Donate</Button>
-        </Link>
-        <Link to="/contact/" style={{ textDecoration: "none" }}>
-          <Button>Contact</Button>
-        </Link>
+        {Object.values(RoutingInformation).map(e => {
+          if (e.hidden) {
+            return null;
+          } else if (!e.path) {
+            return (
+              <DropDownMenu
+                key={uniqueId()}
+                title={e.title}
+                children={e.children}
+              />
+            );
+          } else {
+            return (
+              <Fragment key={uniqueId()}>
+                <Link
+                  key={uniqueId()}
+                  to={e.route}
+                  style={{ textDecoration: "none" }}
+                >
+                  <Button>{e.title}</Button>
+                </Link>
+              </Fragment>
+            );
+          }
+        })}
       </Fragment>
     );
   };
