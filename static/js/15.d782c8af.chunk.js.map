@@ -1,0 +1,1 @@
+{"version":3,"sources":["assets/ambassador_programs/jadeyoga_logo.png"],"names":["module","exports","__webpack_require__","p"],"mappings":"8EAAAA,EAAAC,QAAiBC,EAAAC,EAAuB","file":"static/js/15.d782c8af.chunk.js","sourcesContent":["module.exports = __webpack_public_path__ + \"static/media/jadeyoga_logo.27ed12a0.png\";"],"sourceRoot":""}
