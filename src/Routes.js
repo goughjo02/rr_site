@@ -9,10 +9,15 @@ import LoadingComponent from "./LoadingComponent";
 import { withStyles } from "@material-ui/core/styles";
 // Material UI icons
 import HomeIcon from "@material-ui/icons/Home";
-import MailIcon from "@material-ui/icons/Mail";
-import SchoolIcon from "@material-ui/icons/School";
-import PeopleIcon from "@material-ui/icons/People";
-import PublicIcon from "@material-ui/icons/Public";
+import WhatWeDoIcon from "@material-ui/icons/ShowChart";
+import OurStoryIcon from "@material-ui/icons/Public";
+import ProjectEmpowerIcon from "@material-ui/icons/Business";
+import SchoolFundIcon from "@material-ui/icons/School";
+import DonateIcon from "@material-ui/icons/LocalAtm";
+import YogaIcon from "@material-ui/icons/DirectionsWalk";
+import ExpertiseIcon from "@material-ui/icons/People";
+import AmbassaorProgramsIcon from "@material-ui/icons/PeopleOutline";
+import ContactIcon from "@material-ui/icons/Mail";
 
 const Home = {
   title: "Home",
@@ -22,62 +27,62 @@ const Home = {
 };
 const WhatWeDo = {
   title: "What We Do",
-  icon: <HomeIcon />,
+  icon: <WhatWeDoIcon />,
   route: "/what-we-do/",
   path: "./modules/WhatWeDo"
 };
 const OurStory = {
   title: "Our Story",
-  icon: <PublicIcon />,
+  icon: <OurStoryIcon />,
   route: "/our-story/",
   path: "./modules/OurStory"
 };
 const ProjectEmpower = {
   title: "Project Empower",
-  icon: <PeopleIcon />,
+  icon: <ProjectEmpowerIcon />,
   route: "/project-empower/",
   path: "./modules/ProjectEmpower"
 };
 const SchoolFund = {
   title: "School Fund",
-  icon: <SchoolIcon />,
+  icon: <SchoolFundIcon />,
   route: "/school-fund/",
   path: "./modules/SchoolFund"
 };
 const Donate = {
   title: "Donate",
-  icon: <HomeIcon />,
+  icon: <DonateIcon />,
   route: "/donate/",
   path: "./modules/Donate"
 };
 const Yoga = {
   title: "Yoga",
-  icon: <HomeIcon />,
+  icon: <YogaIcon />,
   route: "/yoga/",
   path: "./modules/Yoga"
 };
 const YogaTeachers = {
   title: "Yoga Teachers",
-  icon: <HomeIcon />,
+  icon: <YogaIcon />,
   route: "/yoga-teachers/",
   path: "./modules/YogaTeachers",
   hidden: true
 };
 const Expertise = {
   title: "Expertise",
-  icon: <HomeIcon />,
+  icon: <ExpertiseIcon />,
   route: "/expertise/",
   path: "./modules/Expertise"
 };
 const AmbassadorPrograms = {
   title: "Ambassador Programs",
-  icon: <HomeIcon />,
+  icon: <AmbassaorProgramsIcon />,
   route: "/ambassador-programs/",
   path: "./modules/AmbassadorPrograms"
 };
 const Contact = {
   title: "Contact",
-  icon: <MailIcon />,
+  icon: <ContactIcon />,
   route: "/contact/",
   path: "./modules/Contact"
 };
