@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 // Material UI stuff
 import { withStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
@@ -12,23 +12,20 @@ const styles = theme => ({
   toolbar: {
     padding: "24px",
     alignItems: "center",
-    justifyContent: "space-between"
+    justifyContent: "space-between",
+    alignSelf: "flex-end"
   }
 });
 
-class Footer extends Component {
-  render() {
-    const { classes } = this.props;
-    return (
-      <div>
-        <AppBar position="static" color="primary" className={classes.appBar}>
-          <Toolbar className={classes.toolbar}>
-            <div>Rise Rwanda</div>
-          </Toolbar>
-        </AppBar>
-      </div>
-    );
-  }
-}
+const Footer = props => {
+  const { classes } = props;
+  return (
+      <AppBar position="static" color="primary" className={classes.appBar}>
+        <Toolbar className={classes.toolbar}>
+          <div>Rise Rwanda</div>
+        </Toolbar>
+      </AppBar>
+  );
+};
 
 export default withStyles(styles, { withTheme: true })(Footer);

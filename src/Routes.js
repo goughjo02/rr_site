@@ -1,10 +1,12 @@
-import React, { Fragment } from "react";
+import React from "react";
 // React Router Stuff
 import { Route, Redirect } from "react-router-dom";
 // React Loadable stuff
 import Loadable from "react-loadable";
 // Loading Component
 import LoadingComponent from "./LoadingComponent";
+// Material UI stuff
+import { withStyles } from "@material-ui/core/styles";
 // Material UI icons
 import HomeIcon from "@material-ui/icons/Home";
 import MailIcon from "@material-ui/icons/Mail";
@@ -104,9 +106,10 @@ const RoutingInformation = {
 };
 export { RoutingInformation };
 
-const Routes = () => {
+const Routes = props => {
+  const { classes } = props;
   return (
-    <Fragment>
+    <div className={classes.root}>
       <Route exact path="/rr_site" render={() => <Redirect to="/" />} />
       {Object.values(RoutingInformation).map(e => {
         if (!e.route) {
@@ -137,8 +140,14 @@ const Routes = () => {
           );
         }
       })}
-    </Fragment>
+    </div>
   );
 };
 
-export default Routes;
+const styles = theme => ({
+  root: {
+    flex: 1
+  }
+})
+
+export default withStyles(styles, { withTheme: true })(Routes);

@@ -31,9 +31,6 @@ const styles = theme => ({
   toolbar: {
     justifyContent: "flex-end"
   },
-  z9999: {
-    zIndex: 9999
-  },
   logoHolder: {
     marginRight: "auto"
   },
